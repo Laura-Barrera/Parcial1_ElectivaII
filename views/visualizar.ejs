@@ -3,13 +3,29 @@
 
 <head>
     <!-- Incluir archivos fijos de cabecera -->
-    <%-include('. /templates/header.ejs')%>
+    <%-include('./templates/header.ejs')%>
+    <meta charset="UTF-8">
+        <title>Hello DefaultController!</title>
+        
+        <!-- Required meta tags -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"></script>
+
+        <!-- Datatables -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.css">
+        <script src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.js"></script>
 </head>
 
 <body>
     <div class="container">
         <nav class="navbar navbar-dark bg-dark">
-            <%-include('. /templates/navbar.ejs')%>
+            <%-include('./templates/navbar.ejs')%>
         </nav>
 
         <main><br>
@@ -17,8 +33,8 @@
                 <h3>Datos de las Peliculas</h3>
                 <%if(peliculas.size> 0){%>
                     Existen <%=peliculas.size%> registros de peliculas
-                        <div class="table-responsive">
-                            <table class="table">
+                        <div class="table-responsive" id="mydatatable-container">
+                            <table class="records_list table table-striped table-bordered table-hover" id="mydatatable">
                                 <thead>
                                     <tr>
                                         <th>Title</th>
@@ -91,6 +107,48 @@
                                 </tbody>
                             </table>
                         </div>
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+                        <script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json"></script>
+                        <style>
+                            #mydatatable tfoot input{
+                                width: 100% !important;
+                            }
+                            #mydatatable tfoot {
+                                display: table-header-group !important;
+                            }
+                            </style>
+                            
+                            <script type="text/javascript">
+                            $(document).ready(function() {
+                                $('#mydatatable tfoot th').each( function () {
+                                    var title = $(this).text();
+                                    $(this).html( '<input type="text" placeholder="Filtrar.." />' );
+                                } );
+                            
+                                var table = $('#mydatatable').DataTable({
+                                    "dom": 'B<"float-left"i><"float-right"f>t<"float-left"l><"float-right"p><"clearfix">',
+                                    "responsive": false,
+                                    "language": {
+                                        "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json"
+                                    },
+                                    "order": [[ 0, "desc" ]],
+                                    "initComplete": function () {
+                                        this.api().columns().every( function () {
+                                            var that = this;
+                            
+                                            $( 'input', this.footer() ).on( 'keyup change', function () {
+                                                if ( that.search() !== this.value ) {
+                                                    that
+                                                        .search( this.value )
+                                                        .draw();
+                                                    }
+                                            });
+                                        })
+                                    }
+                                });
+                            });
+                            </script>
                         <%}else{%>
                             No existen registros
                             <%}%>
@@ -98,7 +156,7 @@
         </main>
     </div>
     <!-- Incluir archivos fijos de footer -->
-    <%-include('. /templates/footer.ejs')%>
+    <%-include('./templates/footer.ejs')%>
 </body>
 
 </html>

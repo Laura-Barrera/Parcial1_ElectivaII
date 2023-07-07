@@ -16,7 +16,7 @@
             <div class="container">
                 <h3>Eliminar un registro de las peliculas</h3>
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" id="mytable">
                         <thead>
                             <tr>
                                 <th>Title</th>
@@ -24,12 +24,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td><button class="btn btn-primary" id="eliminar">Eliminar</button></td>
-                            </tr>
+                            <%for(const [key,value] of peliculas ){%>
+                                <tr>
+                                    <td><%=value.title%></td>
+                                    <td><button class="btn btn-primary" id="eliminar">Eliminar</button></td>
+                                </tr>
+                            <%}%>
                         </tbody>
                     </table>
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var table = $('#myTable').DataTable();
+
+      $('#myTable tbody').on('click', '.eliminar', function() {
+        var row = $(this).closest('tr');
+        var title = row.find('td:first').text();
+        
+        // Realizar cualquier acción necesaria con el título capturado
+        console.log('Título capturado:', title);
+
+        // Eliminar la fila de la tabla
+        table.row(row).remove().draw();
+      });
+    });
+    </script>
                 </div>
             </div>
         </main>
