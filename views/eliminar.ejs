@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Incluir archivos fijos de cabecera -->
+    <%-include('./templates/header.ejs')%>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-dark bg-dark">
+            <%-include('./templates/navbar.ejs')%>
+        </nav>
+    
+        <main><br>
+            <div class="container">
+                <h3>Eliminar un registro de las peliculas</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td><button class="btn btn-primary" id="eliminar">Eliminar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Incluir archivos fijos de footer -->
+    <%-include('./templates/footer.ejs')%>
+</body>
+
+</html>

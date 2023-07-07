@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Incluir archivos fijos de cabecera -->
+    <%-include('./templates/header.ejs')%>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-dark bg-dark">
+            <%-include('./templates/navbar.ejs')%>
+        </nav>
+    
+        <main><br>
+            <div class="container">
+                <p>En esta pagina se presenta el desarrollo del parcial de EJS de la Electiva II<br>
+                    Para el desarrollo de este parcial se hizo uso de EJS como modelo de plantillas de JavaScript,
+                    y JavaScript para la logica del desarrollo de cada uno de los requisitos propuestos. <br>
+                    En el menu colapsable de la parte superior se encuentra un menu para poder visualizar los registros
+                    de peliculas o eliminar algun registro segun sea pertinente.
+                    y fue necesario utilizar:
+                    <ul>
+                        <li>Express</li>
+                        <li>EJS</li>
+                        <li>JavaScript</li>
+                        <li>Nodemoon</li>
+                    </ul><br>
+                    Es importante aclarar que no se maneja persistencia respecto a los cambios que se puedan
+                    realizar en el front y por lo tanto solo se veran reflejados mientras el servidor este activo.
+                </p>
+            </div>
+        </main>
+    </div>
+    <!-- Incluir archivos fijos de footer -->
+    <%-include('./templates/footer.ejs')%>
+</body>
+
+</html>

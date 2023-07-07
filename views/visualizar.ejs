@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Incluir archivos fijos de cabecera -->
+    <%-include('. /templates/header.ejs')%>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-dark bg-dark">
+            <%-include('. /templates/navbar.ejs')%>
+        </nav>
+
+        <main><br>
+            <div class="container">
+                <h3>Datos de las Peliculas</h3>
+                <%if(peliculas.size> 0){%>
+                    Existen <%=peliculas.size%> registros de peliculas
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Phase</th>
+                                        <th>Category name</th>
+                                        <th>Release year</th>
+                                        <th>Running time</th>
+                                        <th>Rating name</th>
+                                        <th>Disc format name</th>
+                                        <th>Number discs</th>
+                                        <th>Viewing format name</th>
+                                        <th>Aspect ratio name</th>
+                                        <th>Status</th>
+                                        <th>Release date</th>
+                                        <th>Budget</th>
+                                        <th>Gross</th>
+                                        <th>Time stamp</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%for(const [key,value] of peliculas ){%>
+                                        <tr>
+                                            <td>
+                                                <%=value.title%>
+                                            </td>
+                                            <td>
+                                                <%=value.phase%>
+                                            </td>
+                                            <td>
+                                                <%=value.category_name%>
+                                            </td>
+                                            <td>
+                                                <%=value.release_year%>
+                                            </td>
+                                            <td>
+                                                <%=value.running_time%>
+                                            </td>
+                                            <td>
+                                                <%=value.rating_name%>
+                                            </td>
+                                            <td>
+                                                <%=value.disc_format_name%>
+                                            </td>
+                                            <td>
+                                                <%=value.number_discs%>
+                                            </td>
+                                            <td>
+                                                <%=value.viewing_format_name%>
+                                            </td>
+                                            <td>
+                                                <%=value.aspect_ratio_name%>
+                                            </td>
+                                            <td>
+                                                <%=value.status%>
+                                            </td>
+                                            <td>
+                                                <%=value.release_date%>
+                                            </td>
+                                            <td>
+                                                <%=value.budget%>
+                                            </td>
+                                            <td>
+                                                <%=value.gross%>
+                                            </td>
+                                            <td>
+                                                <%=value.time_stamp%>
+                                            </td>
+                                        </tr>
+                                        <%}%>
+                                </tbody>
+                            </table>
+                        </div>
+                        <%}else{%>
+                            No existen registros
+                            <%}%>
+            </div>
+        </main>
+    </div>
+    <!-- Incluir archivos fijos de footer -->
+    <%-include('. /templates/footer.ejs')%>
+</body>
+
+</html>
